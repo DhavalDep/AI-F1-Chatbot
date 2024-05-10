@@ -1,0 +1,156 @@
+<aiml version="1.0.1" encoding="UTF-8">
+
+<!-- Greetings and Politeness -->
+<category> <pattern> HELLO </pattern>
+  <template><random>
+	<li>Hello, I am ready to help with your Formula 1 Questions.</li>
+	<li>Hi! I am at your service.</li>
+	<li>Hi there, how are you?</li></random></template></category>
+
+<category> <pattern> HELLO * </pattern>
+  <template><srai>HELLO</srai></template> </category>
+
+<category> <pattern> HI </pattern>
+  <template><srai>HELLO</srai></template> </category>
+
+<category> <pattern> HI * </pattern>
+  <template><srai>HELLO</srai></template> </category>
+
+<category> <pattern> HOW ARE YOU </pattern>
+  <template><random>
+	<li>I'm good, thanks for asking!</li>
+	<li>I'm functioning well and am ready to help!</li>
+	<li>I am great and ready to help!</li></random></template></category>
+
+<category> <pattern> HOW ARE YOU * </pattern>
+  <template><srai>HOW ARE YOU</srai></template> </category>
+
+<category><pattern> I AM * </pattern>
+  <template>That's good to know. I am ready to help.</template></category>
+
+<category><pattern> BYE </pattern>
+  <template>#0$Bye! Nice talking to you. You take care now.</template></category>
+
+<category><pattern> GOODBYE </pattern>
+  <template><srai>BYE</srai></template></category>
+
+<category><pattern> EXIT </pattern>
+  <template><srai>BYE</srai></template></category>
+
+<category> <pattern> THANKS </pattern>
+  <template>You are welcome.</template></category>
+
+<category> <pattern> THANK YOU </pattern>
+  <template><srai>THANKS</srai></template></category>
+
+<category> <pattern> CHEERS </pattern>
+  <template><srai>THANKS</srai></template></category>
+
+<category> <pattern> CHEERS * </pattern>
+  <template><srai>THANKS</srai></template></category>
+
+<category> <pattern> WHO IS YOUR FAVOURITE DRIVER </pattern>
+  <template><random>
+	<li>Max Verstappen</li>
+	<li>Lewis Hamilton</li>
+	<li>Charles LeClerc</li>
+	<li>Lando Norris</li></random></template></category>
+
+<category> <pattern> WHO IS YOUR FAVOURITE CONSTRUCTOR </pattern>
+  <template><random>
+	<li>Ferrari</li>
+	<li>Mercedes</li>
+	<li>Red Bull Racing</li>
+	<li>Mclaren</li></random></template></category>
+
+<category> <pattern> WHAT IS YOUR FAVOURITE GRAND PRIX </pattern>
+  <template><random>
+	<li>Bahrain</li>
+	<li>Miami</li>
+	<li>Monaco</li>
+	<li>Britain</li>
+	<li>Singapore</li></random></template></category>
+
+<category> <pattern>WHAT IS YOUR FAVOURITE CIRCUIT</pattern>
+  <template><srai>WHAT IS YOUR FAVOURITE GRAND PRIX</srai></template></category>
+
+
+
+<category>
+  <pattern>WHO RACES FOR *</pattern>
+  <template>
+    <think><set name="constructor"><star/></set></think>
+    <condition name="constructor">
+        <li value="Ferrari">Charles LeClerc and Carlos Sainz.</li>
+	<li value="Mercedes">Lewis Hamilton and George Russell</li>
+	<li value="Red Bull Racing">Max Verstappen and Sergio Perez.</li>
+	<li value="McLaren">Daniel Ricciardo and Lando Norris.</li>
+	<li value="Alpine">Fernando Alonso and Esteban Ocon.</li>
+	<li value="AlphaTauri">Pierre Gasly and Yuki Tsunoda.</li>
+	<li value="Aston Martin">Sebastian Vettel and Lance Stroll.</li>
+	<li value="Williams">Nicholas Latifi and Alex Albon.</li>
+	<li value="Alfa Romeo">Zhoa Guanyu and Valtteri Bottas.</li>
+	<li value="Haas">Kevin Magnussen and Mich Schumacher.</li>
+	<li><star/> is not a constructor.</li></condition></template></category>
+
+<category> <pattern>WHICH DRIVERS RACE FOR *</pattern>
+  <template><srai>WHO RACES FOR <star/></srai></template></category>
+
+<category> <pattern>WHO DRIVES FOR *</pattern>
+  <template><srai>WHO RACES FOR <star/></srai></template></category>
+
+
+<category>
+  <pattern>WHO WON IN *</pattern>
+  <template>
+    <think><set name="year"><star/></set></think>
+    <condition name="year">
+        <li value="2022">Red Bull Racing and Max Verstappen</li>
+	<li value="2021">Mercedes and Max Verstappen</li>
+	<li value="2020">Mercedes and Lewis Hamilton.</li>
+	<li value="2019">Mercedes and Lewis Hamilton.</li>
+	<li value="2018">Mercedes and Lewis Hamilton.</li>
+	<li value="2017">Mercedes and Lewis Hamilton.</li>
+	<li value="2016">Mercedes and Nico Rosberg.</li>
+	<li value="2015">Mercedes and Lewis Hamilton.</li>
+	<li value="2014">Mercedes and Lewis Hamilton.</li>
+	<li value="2013">Red Bull Racing and Sebastian Vettel.</li>
+	<li value="2012">Red Bull Racing and Sebastian Vettel.</li>
+	<li value="2011">Red Bull Racing and Sebastian Vettel.</li>
+	<li value="2010">Red Bull Racing and Sebastian Vettel.</li>
+	<li>I don't know this years winner.</li></condition></template></category>
+
+<category> <pattern>WHO WON THE CHAMPIONSHIPS IN *</pattern>
+  <template><srai>WHO WON IN <star/></srai></template></category>
+
+<category> <pattern>WHICH CONSTRUCTOR AND DRIVER WON IN *</pattern>
+  <template><srai>WHO WON IN <star/></srai></template></category>
+
+<category> <pattern>WHICH DRIVER AND CONSTRUCTOR WON IN *</pattern>
+  <template><srai>WHO WON IN <star/></srai></template></category>
+
+
+
+<!-- Logic input -->
+<category><pattern> I KNOW THAT * IS A *</pattern>
+  <template>#31$<star index="1"/> is a <star index="2"/></template></category>  
+
+<category><pattern> CHECK THAT * IS A *</pattern>
+  <template>#32$<star index="1"/> is a <star index="2"/></template></category> 
+
+
+<!-- Task D Input -->
+<category><pattern> SHOW TEXT FROM * IN *</pattern>
+  <template>#45$<star index="1"/>  <star index="2"/> </template></category>  
+
+
+<category><pattern> SHOW TEXT FROM *</pattern>
+  <template>#45$<star index="1"/> </template></category>  
+
+
+
+<!-- Default reaction -->
+<category><pattern> * </pattern>
+  <template>#99$<star index="1"/></template></category>
+
+</aiml>
