@@ -1,0 +1,6 @@
+langcodes
+requests
+azure-cognitiveservices-vision-computervision
+msrest
+azure-ai-textanalytics
+azure-core
